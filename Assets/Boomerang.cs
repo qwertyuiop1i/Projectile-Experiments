@@ -15,6 +15,13 @@ public class Boomerang : MonoBehaviour
     private bool returning = false;
     private Transform player;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("wall"))
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,7 +50,7 @@ public class Boomerang : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
-        if (Vector2.Distance(transform.position, player.position) < 1.2f) { Destroy(gameObject); }
+        if (returning&&Vector2.Distance(transform.position, player.position) < 1.2f) { Destroy(gameObject); }
     }
 
 

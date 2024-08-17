@@ -8,19 +8,10 @@ public class BouncingBullet : MonoBehaviour
     public Light2D ld;
     public ParticleSystem ps;
     public float bulletSpeed = 15f;
-    public float bounceFactor = 0.8f;
 
     public float lifeTime = 5f;
     public float timer = 0f;
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("wall"))
-        {
-            Vector2 reflection = Vector2.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
 
-            rb.velocity = reflection * bulletSpeed * bounceFactor;
-        }
-    }
     void Start()
     {
         timer = 0f;
